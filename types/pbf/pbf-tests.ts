@@ -12,13 +12,28 @@ pbf.pos;
 pbf.type;
 pbf.length;
 pbf.destroy();
-pbf.readFields(tag => {});
-pbf.readFields((tag, result) => {});
-pbf.readFields((tag, result, pbf) => {});
+pbf.readFields(tag => {}, {});
+const x: number[] = pbf.readFields((tag, result) => {}, [] as number[]);
+interface DummyRecord {
+    a: string | null;
+    b: number;
+}
+const dummyDummyRecord: DummyRecord = {
+    a: null,
+    b: 0,
+};
+pbf.readFields((tag, result, pbf) => {}, dummyDummyRecord);
+pbf.readFields(
+    (tag, result, pbf) => {
+        result.value.push(pbf.readFloat());
+    },
+    { value: [] as number[] },
+);
+
 pbf.readFields(tag => {}, {}, 1);
-pbf.readMessage(tag => {});
-pbf.readMessage((tag, result) => {});
-pbf.readMessage((tag, result, pbf) => {});
+pbf.readMessage(tag => {}, []);
+pbf.readMessage((tag, result) => {}, {});
+pbf.readMessage((tag, result, pbf) => {}, {});
 pbf.readFixed32();
 pbf.readSFixed32();
 pbf.readFixed64();

@@ -17,8 +17,8 @@ declare class Pbf {
     constructor(buffer?: Uint8Array|ArrayBuffer);
 
     destroy(): void;
-    readFields<T>(readField: (tag: number, result?: T, pbf?: Pbf) => void, result?: T, end?: number): T;
-    readMessage<T>(readField: (tag: number, result?: T, pbf?: Pbf) => void, result?: T): T;
+    readFields<T>(readField: (tag: number, result: T, pbf: Pbf) => void, result: T, end?: number): T;
+    readMessage<T>(readField: (tag: number, result: T, pbf: Pbf) => void, result: T): T;
     readFixed32(): number;
     readSFixed32(): number;
     readFixed64(): number;
